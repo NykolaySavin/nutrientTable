@@ -6,8 +6,8 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
   </head>
   <body>
-    <button id="addProduct">Add Product</button>
-
+    <button id="addColumn">Add </button>
+    <button id="removeColumn">Remove</button>
     <div id="someContainer"></div>
     <script type="text/javascript">
       const greenColumns = 6;
@@ -25,6 +25,9 @@
           table.append(row);
         }
 
+        $("#someContainer").append(table);
+      }
+      function addColumn() {
         if ($("table").length) {
           $("table")
             .find("tr")
@@ -38,12 +41,18 @@
                 .eq(-1)
                 .after("<td>ROW</td>");
             });
-        } else {
-          $("#someContainer").append(table);
         }
       }
+      function removeColumn(){
+          $('table tr').each(function() {
+              $(this).find('td:last').remove();
+          });
+      }
       $(function() {
-        $("#addProduct").click(createTable);
+        $("#addColumn").click(addColumn);
+      });
+      $(function() {
+          $("#removeColumn").click(removeColumn);
       });
       createTable();
     </script>
