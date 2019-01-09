@@ -10,19 +10,20 @@
     <button id="removeGreenColumn">Remove Green</button>
     <button id="addRedColumn">Add Red</button>
     <button id="removeRedColumn">Remove Red</button>
-    <input name="amount" type="text" />
+    <input name="amount" type="number" />
     <div id="someContainer"></div>
     <script type="text/javascript">
       let greenColumns = 6;
       let redColumns = 8;
-      function createTable(columnLength) {
+      let value = 0;
+      function createTable(columnLength,multiplyValue) {
         var table = $("<table></table>").addClass("foo");
         for (var i = 0; i < 5; i++) {
           row = $("<tr></tr>");
           for (var j = 0; j < columnLength; j++) {
             var rowData = $("<td></td>")
               .addClass("bar")
-              .text("result " + columnLength);
+              .text("result " + multiplyValue);
             row.append(rowData);
           }
           table.append(row);
@@ -38,8 +39,8 @@
       }
       function redrawTables() {
         $("table").remove();
-        createTable(greenColumns);
-        createTable(redColumns);
+        createTable(greenColumns,value);
+        createTable(redColumns,value);
       }
       $(function() {
         $("#addGreenColumn").click(() => {
@@ -73,7 +74,10 @@
           }
         });
       });
-      $("input[name=amount]").change(redrawTables);
+      $("input[name=amount]").keyup(e => {
+        value = e.target.value;
+        redrawTables();
+      });
       redrawTables();
     </script>
   </body>
