@@ -6,22 +6,23 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
   </head>
   <body>
-    <button id="addColumn">Add </button>
-    <button id="removeColumn">Remove</button>
-    <input name="amount" type="text">
+    <button id="addGreenColumn">Add Green</button>
+    <button id="removeGreenColumn">Remove Green</button>
+    <button id="addRedColumn">Add Red</button>
+    <button id="removeRedColumn">Remove Red</button>
+    <input name="amount" type="text" />
     <div id="someContainer"></div>
     <script type="text/javascript">
       let greenColumns = 6;
       let redColumns = 8;
-      function createTable() {
-        $('table').remove();
+      function createTable(columnLength) {
         var table = $("<table></table>").addClass("foo");
         for (var i = 0; i < 5; i++) {
           row = $("<tr></tr>");
-          for (var j = 0; j < greenColumns; j++) {
+          for (var j = 0; j < columnLength; j++) {
             var rowData = $("<td></td>")
               .addClass("bar")
-              .text("result " + greenColumns);
+              .text("result " + columnLength);
             row.append(rowData);
           }
           table.append(row);
@@ -32,23 +33,48 @@
       function addColumn() {
         if ($("table").length) {
           greenColumns++;
-          createTable();
+          redrawTables();
         }
       }
-      function removeColumn(){
-          if ($("table").length) {
-              greenColumns--;
-              createTable();
-          }
+      function redrawTables() {
+        $("table").remove();
+        createTable(greenColumns);
+        createTable(redColumns);
       }
       $(function() {
-        $("#addColumn").click(addColumn);
+        $("#addGreenColumn").click(() => {
+          if (greenColumns < 10) {
+            greenColumns++;
+            redrawTables();
+          }
+        });
       });
       $(function() {
-          $("#removeColumn").click(removeColumn);
+        $("#removeGreenColumn").click(() => {
+          if (greenColumns > 3) {
+            greenColumns--;
+            redrawTables();
+          }
+        });
       });
-      $('input[name=amount]').change(function() { createTable();});
-      createTable();
+      $(function() {
+        $("#addRedColumn").click(() => {
+          if (redColumns < 14) {
+            redColumns++;
+            redrawTables();
+          }
+        });
+      });
+      $(function() {
+        $("#removeRedColumn").click(() => {
+          if (redColumns > 6) {
+            redColumns--;
+            redrawTables();
+          }
+        });
+      });
+      $("input[name=amount]").change(redrawTables);
+      redrawTables();
     </script>
   </body>
 </html>
