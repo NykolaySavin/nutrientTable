@@ -10,29 +10,42 @@
 
     <div id="someContainer"></div>
     <script type="text/javascript">
-        function createTable() {
-            var table = $("<table></table>").addClass("foo");
-            for (var i = 0; i < 10; i++) {
-                row = $("<tr></tr>");
-                for (var j = 0; j < 10; j++) {
-                    var rowData = $("<td></td>")
-                        .addClass("bar")
-                        .text("result " + j);
-                    row.append(rowData);
-                }
-                table.append(row);
-            }
-
-            if ($("table").length) {
-                $("#someContainer tr:first").after(row);
-            } else {
-                $("#someContainer").append(table);
-            }
+      const greenColumns = 6;
+      const redColumns = 8;
+      function createTable() {
+        var table = $("<table></table>").addClass("foo");
+        for (var i = 0; i < 5; i++) {
+          row = $("<tr></tr>");
+          for (var j = 0; j < greenColumns; j++) {
+            var rowData = $("<td></td>")
+              .addClass("bar")
+              .text("result " + j);
+            row.append(rowData);
+          }
+          table.append(row);
         }
+
+        if ($("table").length) {
+          $("table")
+            .find("tr")
+            .each(function() {
+              $(this)
+                .find("th")
+                .eq(-1)
+                .after("<th>HEADER</th>");
+              $(this)
+                .find("td")
+                .eq(-1)
+                .after("<td>ROW</td>");
+            });
+        } else {
+          $("#someContainer").append(table);
+        }
+      }
       $(function() {
         $("#addProduct").click(createTable);
       });
-        createTable();
+      createTable();
     </script>
   </body>
 </html>
