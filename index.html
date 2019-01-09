@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<div id="myTable"></div>
-<script>
-    function tableCreate() {
-        var body = document.getElementsByTagName('body')[0];
-        var tbl = document.createElement('table');
-        tbl.style.width = '100%';
-        tbl.setAttribute('border', '1');
-        var tbdy = document.createElement('tbody');
-        for (var i = 0; i < 3; i++) {
-            var tr = document.createElement('tr');
-            for (var j = 0; j < 2; j++) {
-                    var td = document.createElement('td');
-                    td.appendChild(document.createTextNode('555'))
-                    tr.appendChild(td)
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  </head>
+  <body>
+    <button id="addProduct">Add Product</button>
+
+    <div id="someContainer"></div>
+    <script type="text/javascript">
+        function createTable() {
+            var table = $("<table></table>").addClass("foo");
+            for (var i = 0; i < 10; i++) {
+                row = $("<tr></tr>");
+                for (var j = 0; j < 10; j++) {
+                    var rowData = $("<td></td>")
+                        .addClass("bar")
+                        .text("result " + j);
+                    row.append(rowData);
+                }
+                table.append(row);
             }
-            tbdy.appendChild(tr);
+
+            if ($("table").length) {
+                $("#someContainer tr:first").after(row);
+            } else {
+                $("#someContainer").append(table);
+            }
         }
-        tbl.appendChild(tbdy);
-        body.appendChild(tbl)
-    }
-    tableCreate();
-</script>
-</body>
+      $(function() {
+        $("#addProduct").click(createTable);
+      });
+        createTable();
+    </script>
+  </body>
 </html>
