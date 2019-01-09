@@ -8,18 +8,20 @@
   <body>
     <button id="addColumn">Add </button>
     <button id="removeColumn">Remove</button>
+    <input name="amount" type="text">
     <div id="someContainer"></div>
     <script type="text/javascript">
-      const greenColumns = 6;
-      const redColumns = 8;
+      let greenColumns = 6;
+      let redColumns = 8;
       function createTable() {
+        $('table').remove();
         var table = $("<table></table>").addClass("foo");
         for (var i = 0; i < 5; i++) {
           row = $("<tr></tr>");
           for (var j = 0; j < greenColumns; j++) {
             var rowData = $("<td></td>")
               .addClass("bar")
-              .text("result " + j);
+              .text("result " + greenColumns);
             row.append(rowData);
           }
           table.append(row);
@@ -29,24 +31,15 @@
       }
       function addColumn() {
         if ($("table").length) {
-          $("table")
-            .find("tr")
-            .each(function() {
-              $(this)
-                .find("th")
-                .eq(-1)
-                .after("<th>HEADER</th>");
-              $(this)
-                .find("td")
-                .eq(-1)
-                .after("<td>ROW</td>");
-            });
+          greenColumns++;
+          createTable();
         }
       }
       function removeColumn(){
-          $('table tr').each(function() {
-              $(this).find('td:last').remove();
-          });
+          if ($("table").length) {
+              greenColumns--;
+              createTable();
+          }
       }
       $(function() {
         $("#addColumn").click(addColumn);
@@ -54,6 +47,7 @@
       $(function() {
           $("#removeColumn").click(removeColumn);
       });
+      $('input[name=amount]').change(function() { createTable();});
       createTable();
     </script>
   </body>
