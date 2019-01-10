@@ -4,18 +4,20 @@
     <meta charset="UTF-8" />
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-  <select id="substance">
-      <option selected="selected">Soil</option>
-      <option>Coco</option>
+    <select id="substance">
+      <option selected="selected">Soil/Coco</option>
       <option>Hydro</option>
-  </select>
-  <select id="footage">
+    </select>
+    <select id="footage">
       <option selected="selected">Gallons</option>
       <option>Litres</option>
-  </select>
-  <input name="amount" type="number" />
+    </select>
+    <input name="amount" type="number" />
     <button id="addGreenColumn">Add Green</button>
     <button id="removeGreenColumn">Remove Green</button>
     <button id="addRedColumn">Add Red</button>
@@ -25,16 +27,70 @@
       let greenColumns = 6;
       let redColumns = 8;
       let value = 0;
-      let substance = "Soil";
-      let footage ="Gallons";
-      function createTable(columnLength,multiplyValue) {
-        var table = $("<table></table>").addClass("foo");
+      let substance = "Soil/Coco";
+      let footage = "Gallons";
+      const hydroGreen = [
+        [6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [10, 12, 14, 14, 14, 14, 14, 14, 14, 14],
+        [3, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+        [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
+        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+        [7, 9, 9, 9, 9, 11, 11, 11, 11, 11],
+        [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+        [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+        [5, 5, 10, 10, 10, 11, 11, 11, 11, 11]
+      ];
+      const cocoGreen = [
+          [1,1,1,1,1,1,1,1,1,1],
+          [6,8,8,8,8,8,8,8,8,8],
+          [10,12,15,17,17,17,17,17,17,17],
+          [4,5,5,5,5,5,5,5,5,5],
+          [1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],
+          [8,8,8,8,8,8,8,8,8,8],
+          [7,9,9,9,9,9,9,9,9,9,9],
+          [2,2,4,4,4,4,4,4,4,4],
+          [2,2,4,4,4,4,4,4,4,4],
+          [7,7,10,10,10,10,10,10,10,10,10,10],
+          [5,5,5,5,5,5,5,5,5,5]
+      ];
+      const cocoRed=[
+          [1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+          [6,7,7,8,8,7,6,6,6,6,6,6,6,6],
+          [5,4,3,2,2,2,1,1,1,1,1,1,1,1],
+          [9,11,11,15,17,19,21,21,21,21,21,21,21,21,21],
+          [2.5,2.5,5,5,5,5,5,5,5,5,5,5,5,5],
+          [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+          [11,11,11,11,11,11,11,11,11,11,11,11,11,11],
+          [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+          [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+          [14,10,7,7,"","","","","","","","","",""],
+          [5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+          ["",6,8,"","","","","","","","","","",""],
+          ["","","",8,8,"","","","","","","","",""],
+          ["","","","","",8,8,8,8,8,8,8,8,8]
+      ]
+      const hydroRed=[
+          [6,7,7,8,8,8,6,6,6,6,6,6,6,6],
+          [3,3,3,3,3,2,1,1,1,1,1,1,1,1],
+          [9,9,9,17,17,19,21,21,21,21,21,21,21,21],
+          [2.5,2.5,5,5,5,5,5,5,5,5,5,5,5,5],
+          [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+          [11,11,11,11,11,11,11,11,11,11,11,11,11,11],
+          [6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+          [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+          [11,10,5,5,"","","","","","","","","",""],
+          ["",6,8,"","","","","","","","","","",""],
+          ["","","",8,8,"","","","","","","","",""],
+          ["","","","","",8,8,8,"","","","","",""]
+      ];
+      function createTable(columnLength, multiplyValue,tableData) {
+        var table = $("<table></table>").addClass("table-striped");
         for (var i = 0; i < 5; i++) {
-          row = $("<tr></tr>");
+          row = $("<tr></tr>").addClass("success");
           for (var j = 0; j < columnLength; j++) {
             var rowData = $("<td></td>")
-              .addClass("bar")
-              .text("result " + multiplyValue);
+              .addClass("success")
+              .text(tableData[i][j]*multiplyValue);
             row.append(rowData);
           }
           table.append(row);
@@ -50,9 +106,12 @@
       }
       function redrawTables() {
         $("table").remove();
-        const multiplier = footage=="Gallons"?value:value*3.785;
-        createTable(greenColumns,multiplier);
-        createTable(redColumns,multiplier);
+        const currentValue = value?value:1;
+        const tableDataGreen = substance=="Soil/Coco"?cocoGreen:hydroGreen;
+          const tableDataRed = substance=="Soil/Coco"?cocoRed:hydroRed;
+        const multiplier = footage == "Gallons" ? currentValue : currentValue * 3.785;
+        createTable(greenColumns, multiplier,tableDataGreen);
+        createTable(redColumns, multiplier,tableDataRed);
       }
       $(function() {
         $("#addGreenColumn").click(() => {
@@ -90,13 +149,13 @@
         value = e.target.value;
         redrawTables();
       });
-      $('#substance').on('change', function() {
-          substance=this.value;
-          redrawTables();
+      $("#substance").on("change", function() {
+        substance = this.value;
+        redrawTables();
       });
-      $('#footage').on('change', function() {
-          footage=this.value;
-          redrawTables();
+      $("#footage").on("change", function() {
+        footage = this.value;
+        redrawTables();
       });
       redrawTables();
     </script>
