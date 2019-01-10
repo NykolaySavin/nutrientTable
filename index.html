@@ -7,7 +7,56 @@
     <!-- Latest compiled and minified CSS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
+        h1 { color: #000000; font-family: 'Raleway',sans-serif; font-size: 22px; font-weight: 800;   text-align: left; text-transform: uppercase; }
+        select {
+            padding:16px;
+            width: 150px;
+            margin: 0;
+            -webkit-border-radius:4px;
+            -moz-border-radius:4px;
+            border-radius:4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #000000;
+            border:none;
+            outline:none;
+            display: inline-block;
+            -webkit-appearance:none;
+            -moz-appearance:none;
+            appearance:none;
+            cursor:pointer;
+        }
+        /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            select {padding-right:18px}
+        }
 
+        label {position:relative}
+        label:after {
+            content:'<>';
+            font:11px "Consolas", monospace;
+            color: #000000;
+            -webkit-transform:rotate(90deg);
+            -moz-transform:rotate(90deg);
+            -ms-transform:rotate(90deg);
+            transform:rotate(90deg);
+            right:8px; top:2px;
+            padding:0 0 2px;
+            border-bottom:1px solid #ddd;
+            position:absolute;
+            pointer-events:none;
+        }
+        label:before {
+            content:'';
+            right:6px; top:0px;
+            width:20px; height:20px;
+            background:#f8f8f8;
+            position:absolute;
+            pointer-events:none;
+            display:block;
+        }
       .inputContainer {
         padding-bottom: 100px;
       }
@@ -89,25 +138,31 @@
     </style>
   </head>
   <body>
+<div class="inputContainer">
+    <h1>Select substance</h1>
+    <label>
+        <select id="substance">
+            <option selected="selected">Soil/Coco</option>
+            <option>Hydro</option>
+        </select>
+    </label>
+    <h1>Select footage</h1>
+    <label>
+        <select id="footage">
+            <option selected="selected">Gallons</option>
+            <option>Litres</option>
+        </select>
+    </label>
+    <h1>Enter amount</h1>
+    <input name="amount" type="number" />
+
+</div>
     <div class="inputContainer">
-      <div class="dropdown"> <select id="substance">
-        <option selected="selected">Soil/Coco</option>
-        <option>Hydro</option>
-      </select></div>
-     <div class="dropdown">
-       <select id="footage">
-         <option selected="selected">Gallons</option>
-         <option>Litres</option>
-       </select>
-     </div>
-
-      <input name="amount" type="number" />
-      <a class="button" id="addGreenColumn">Add Green</a>
-      <a class="button" id="removeGreenColumn">Remove Green</a>
-      <a class="button" id="addRedColumn">Add Red</a>
-      <a class="button" id="removeRedColumn">Remove Red</a>
+        <a class="button" id="addGreenColumn">Add Veg Week</a>
+        <a class="button" id="removeGreenColumn">Remove Veg Week</a>
+        <a class="button" id="addRedColumn">Add Flower Week</a>
+        <a class="button" id="removeRedColumn">Remove Flower Week</a>
     </div>
-
     <div id="greenContent"></div>
     <div id="redContent"></div>
     <script type="text/javascript">
@@ -212,7 +267,7 @@
           if (i == 12) data = "BUD BOOM";
           row.append($("<td></td>").text(data));
           for (var j = 0; j < columnLength; j++) {
-            var rowData = $("<td></td>").text(tableData[i][j] * multiplyValue);
+            var rowData = $("<td></td>").text(Math.round(tableData[i][j] * multiplyValue*10)/10);
             row.append(rowData);
           }
           table.append(row);
@@ -233,14 +288,14 @@
           multiplier,
           tableDataGreen,
           "greenContent",
-          "FLOWERING & RIPENING STAGE"
+          "VEGETATIVE STAGE"
         );
         createTable(
           redColumns,
           multiplier,
           tableDataRed,
           "redContent",
-          "VEGETATIVE STAGE"
+          "FLOWERING & RIPENING STAGE"
         );
       }
       $(function() {
