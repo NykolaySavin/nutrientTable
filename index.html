@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="inputContainer" id="inputContainer">
-      <h1 >Select program:</h1>
+      <h1>Select program:</h1>
       <label>
         <select id="substance">
           <option selected="selected">Soil</option>
@@ -27,14 +27,13 @@
           <option>Litres</option>
         </select>
       </label>
-
     </div>
     <div class="inputContainer">
       <a class="button" id="addGreenColumn">Add Veg Week</a>
       <a class="button" id="removeGreenColumn">Remove Veg Week</a>
       <a class="button" id="addRedColumn">Add Flower Week</a>
       <a class="button" id="removeRedColumn">Remove Flower Week</a>
-      <a class="button" id="printTable" >Print</a>
+      <a class="button" id="printTable">Print</a>
     </div>
     <div id="greenContent"></div>
     <div id="redContent"></div>
@@ -68,16 +67,16 @@
         [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
       ];
       const soilGreen = [
-          [6, 8, 8, 8, 9, 10, 10, 10, 10, 10],
-          [10, 12, 15, 17, 17, 19, 19, 19, 19, 19],
-          [4, 5, 5, 5, 6, 6, 6, 6, 6, 6],
-          ["","","","","","","","","",""],
-          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-          [7, 9, 9, 9, 9, 11, 11, 11, 11, 11, 11],
-          [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
-          [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
-          [7, 7, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14],
-          [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+        [6, 8, 8, 8, 9, 10, 10, 10, 10, 10],
+        [10, 12, 15, 17, 17, 19, 19, 19, 19, 19],
+        [4, 5, 5, 5, 6, 6, 6, 6, 6, 6],
+        ["", "", "", "", "", "", "", "", "", ""],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [7, 9, 9, 9, 9, 11, 11, 11, 11, 11, 11],
+        [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+        [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+        [7, 7, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14],
+        [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
       ];
       const cocoRed = [
         [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -95,19 +94,19 @@
         ["", "", "", "", "", 8, 8, 8, 8, 8, 8, 8, 8, 8]
       ];
       const soilRed = [
-          [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
-          [5, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
-          [9, 11, 11, 15, 17, 19, 21, 21, 21, 21, 21, 21, 21, 21, 21],
-          [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-          [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
-          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-          [14, 10, 7, 7, "", "", "", "", "", "", "", "", "", ""],
-          [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-          ["", 6, 8, "", "", "", "", "", "", "", "", "", "", ""],
-          ["", "", "", 8, 8, "", "", "", "", "", "", "", "", ""],
-          ["", "", "", "", "", 8, 8, 8, 8, 8, 8, 8, 8, 8]
+        [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
+        [5, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
+        [9, 11, 11, 15, 17, 19, 21, 21, 21, 21, 21, 21, 21, 21, 21],
+        [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [14, 10, 7, 7, "", "", "", "", "", "", "", "", "", ""],
+        [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+        ["", 6, 8, "", "", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", 8, 8, "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", 8, 8, 8, 8, 8, 8, 8, 8, 8]
       ];
       const hydroRed = [
         [6, 7, 7, 8, 8, 8, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -179,8 +178,17 @@
         $("table").remove();
         const currentValue = value ? value : 1;
         const tableDataGreen =
-          substance == "Soil" ? soilGreen :substance=="Coco"?cocoGreen:hydroGreen;
-        const tableDataRed = substance == "Soil" ? soilRed :substance=="Coco"? cocoRed:hydroRed;
+          substance == "Soil"
+            ? soilGreen
+            : substance == "Coco"
+            ? cocoGreen
+            : hydroGreen;
+        const tableDataRed =
+          substance == "Soil"
+            ? soilRed
+            : substance == "Coco"
+            ? cocoRed
+            : hydroRed;
         const multiplier =
           footage == "Gallons" ? currentValue : currentValue / 3.785;
         createTable(
@@ -242,23 +250,28 @@
         footage = this.value;
         redrawTables();
       });
-      $("#printTable").click(()=>printDiv());
-      function printDiv()
-      {
+      $("#printTable").click(() => printDiv());
+      function printDiv() {
+        var greenDiv = document.getElementById("greenContent");
+        var redDiv = document.getElementById("redContent");
+        var inputDiv = document.getElementById("inputContainer");
+        var newWin = window.open("", "Print-Window");
 
-          var greenDiv=document.getElementById('greenContent');
-          var redDiv=document.getElementById('redContent');
-          var inputDiv=document.getElementById('inputContainer');
-          var newWin=window.open('','Print-Window');
+        newWin.document.open();
 
-          newWin.document.open();
+        newWin.document.write(
+          '<html><head><link rel="stylesheet" href="styles.css" type="text/css" media="print" /></head><body onload="window.print()">' +
+            inputDiv.innerHTML +
+            greenDiv.innerHTML +
+            redDiv.innerHTML +
+            "</body></html>"
+        );
 
-          newWin.document.write('<html><head><link rel="stylesheet" href="styles.css" type="text/css" media="print" /></head><body onload="window.print()">'+inputDiv.innerHTML+greenDiv.innerHTML+redDiv.innerHTML+'</body></html>');
+        newWin.document.close();
 
-          newWin.document.close();
-
-          setTimeout(function(){newWin.close();},10);
-
+        setTimeout(function() {
+          newWin.close();
+        }, 10);
       }
       redrawTables();
     </script>
