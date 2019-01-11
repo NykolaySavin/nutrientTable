@@ -6,64 +6,81 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        h1 { color: #000000; font-family: 'Raleway',sans-serif; font-size: 22px; font-weight: 800;   text-align: left; text-transform: uppercase; }
+    <style type="text/css" id="css">
+      h1 {
+        display: inline-block;
+        color: #000000;
+        font-family: "Raleway", sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        text-align: left;
+        padding-right: 5px;
+        padding-left: 30px;
+        text-transform: uppercase;
+      }
+      select {
+        display: inline-block;
+        padding: 16px;
+        width: 150px;
+        margin: 0;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        background: #f8f8f8;
+        color: #000000;
+        border: none;
+        outline: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
+      /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
         select {
-            padding:16px;
-            width: 150px;
-            margin: 0;
-            -webkit-border-radius:4px;
-            -moz-border-radius:4px;
-            border-radius:4px;
-            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-            background: #f8f8f8;
-            color: #000000;
-            border:none;
-            outline:none;
-            display: inline-block;
-            -webkit-appearance:none;
-            -moz-appearance:none;
-            appearance:none;
-            cursor:pointer;
+          padding-right: 18px;
         }
-        /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
-        @media screen and (-webkit-min-device-pixel-ratio:0) {
-            select {padding-right:18px}
-        }
+      }
 
-        label {position:relative}
-        label:after {
-            content:'<>';
-            font:11px "Consolas", monospace;
-            color: #000000;
-            -webkit-transform:rotate(90deg);
-            -moz-transform:rotate(90deg);
-            -ms-transform:rotate(90deg);
-            transform:rotate(90deg);
-            right:8px; top:2px;
-            padding:0 0 2px;
-            border-bottom:1px solid #ddd;
-            position:absolute;
-            pointer-events:none;
-        }
-        label:before {
-            content:'';
-            right:6px; top:0px;
-            width:20px; height:20px;
-            background:#f8f8f8;
-            position:absolute;
-            pointer-events:none;
-            display:block;
-        }
+      label {
+        position: relative;
+      }
+      label:after {
+        content: "<>";
+        font: 11px "Consolas", monospace;
+        color: #000000;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 8px;
+        top: 2px;
+        padding: 0 0 2px;
+        border-bottom: 1px solid #ddd;
+        position: absolute;
+        pointer-events: none;
+      }
+      label:before {
+        content: "";
+        right: 6px;
+        top: 0px;
+        width: 20px;
+        height: 20px;
+        background: #f8f8f8;
+        position: absolute;
+        pointer-events: none;
+        display: block;
+      }
       .inputContainer {
-        padding-bottom: 100px;
+        padding-bottom: 40px;
       }
       input[type="number"] {
         font: 20px "Muli", sans-serif;
         color: #333;
-        width: 300px;
+        width: 200px;
         height: 50px;
         box-sizing: border-box;
         letter-spacing: 1px;
@@ -138,30 +155,30 @@
     </style>
   </head>
   <body>
-<div class="inputContainer">
-    <h1>Select substance</h1>
-    <label>
+    <div class="inputContainer" id="inputContainer">
+      <h1>Select substance:</h1>
+      <label>
         <select id="substance">
-            <option selected="selected">Soil/Coco</option>
-            <option>Hydro</option>
+          <option selected="selected">Soil/Coco</option>
+          <option>Hydro</option>
         </select>
-    </label>
-    <h1>Select footage</h1>
-    <label>
+      </label>
+      <h1>Measurement:</h1>
+      <label>
         <select id="footage">
-            <option selected="selected">Gallons</option>
-            <option>Litres</option>
+          <option selected="selected">Gallons</option>
+          <option>Litres</option>
         </select>
-    </label>
-    <h1>Enter amount</h1>
-    <input name="amount" type="number" />
-
-</div>
+      </label>
+      <h1>Reservoir size:</h1>
+      <input name="amount" type="number" />
+    </div>
     <div class="inputContainer">
-        <a class="button" id="addGreenColumn">Add Veg Week</a>
-        <a class="button" id="removeGreenColumn">Remove Veg Week</a>
-        <a class="button" id="addRedColumn">Add Flower Week</a>
-        <a class="button" id="removeRedColumn">Remove Flower Week</a>
+      <a class="button" id="addGreenColumn">Add Veg Week</a>
+      <a class="button" id="removeGreenColumn">Remove Veg Week</a>
+      <a class="button" id="addRedColumn">Add Flower Week</a>
+      <a class="button" id="removeRedColumn">Remove Flower Week</a>
+      <a class="button" id="printTable" >Print</a>
     </div>
     <div id="greenContent"></div>
     <div id="redContent"></div>
@@ -183,23 +200,22 @@
         [5, 5, 10, 10, 10, 11, 11, 11, 11, 11]
       ];
       const cocoGreen = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [6, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [10, 12, 15, 17, 17, 17, 17, 17, 17, 17],
-        [4, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+        [6, 8, 8, 8, 9, 10, 10, 10, 10, 10],
+        [10, 12, 15, 17, 17, 19, 19, 19, 19, 19],
+        [4, 5, 5, 5, 6, 6, 6, 6, 6, 6],
         [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [7, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+        [7, 9, 9, 9, 9, 11, 11, 11, 11, 11, 11],
         [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
         [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
-        [7, 7, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+        [7, 7, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14],
         [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
       ];
       const cocoRed = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
         [5, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
         [9, 11, 11, 15, 17, 19, 21, 21, 21, 21, 21, 21, 21, 21, 21],
+        [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
         [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
@@ -267,7 +283,9 @@
           if (i == 12) data = "BUD BOOM";
           row.append($("<td></td>").text(data));
           for (var j = 0; j < columnLength; j++) {
-            var rowData = $("<td></td>").text(Math.round(tableData[i][j] * multiplyValue*10)/10);
+            var rowData = $("<td></td>").text(
+              Math.round(tableData[i][j] * multiplyValue * 10) / 10
+            );
             row.append(rowData);
           }
           table.append(row);
@@ -342,6 +360,168 @@
         footage = this.value;
         redrawTables();
       });
+      $("#printTable").click(()=>printDiv());
+      function printDiv()
+      {
+
+          var greenDiv=document.getElementById('greenContent');
+          var redDiv=document.getElementById('redContent');
+          var inputDiv=document.getElementById('inputContainer');
+          var newWin=window.open('','Print-Window');
+
+          newWin.document.open();
+
+          newWin.document.write('<html><head><style type="text/css"> h1 {\n' +
+              '        display: inline-block;\n' +
+              '        color: #000000;\n' +
+              '        font-family: "Raleway", sans-serif;\n' +
+              '        font-size: 22px;\n' +
+              '        font-weight: 800;\n' +
+              '        text-align: left;\n' +
+              '        padding-right: 5px;\n' +
+              '        padding-left: 30px;\n' +
+              '        text-transform: uppercase;\n' +
+              '      }\n' +
+              '      select {\n' +
+              '        display: inline-block;\n' +
+              '        padding: 16px;\n' +
+              '        width: 150px;\n' +
+              '        margin: 0;\n' +
+              '        -webkit-border-radius: 4px;\n' +
+              '        -moz-border-radius: 4px;\n' +
+              '        border-radius: 4px;\n' +
+              '        -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
+              '        -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
+              '        box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
+              '        background: #f8f8f8;\n' +
+              '        color: #000000;\n' +
+              '        border: none;\n' +
+              '        outline: none;\n' +
+              '        -webkit-appearance: none;\n' +
+              '        -moz-appearance: none;\n' +
+              '        appearance: none;\n' +
+              '        cursor: pointer;\n' +
+              '      }\n' +
+              '      /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */\n' +
+              '      @media screen and (-webkit-min-device-pixel-ratio: 0) {\n' +
+              '        select {\n' +
+              '          padding-right: 18px;\n' +
+              '        }\n' +
+              '      }\n' +
+              '\n' +
+              '      label {\n' +
+              '        position: relative;\n' +
+              '      }\n' +
+              '      label:after {\n' +
+              '        content: "<>";\n' +
+              '        font: 11px "Consolas", monospace;\n' +
+              '        color: #000000;\n' +
+              '        -webkit-transform: rotate(90deg);\n' +
+              '        -moz-transform: rotate(90deg);\n' +
+              '        -ms-transform: rotate(90deg);\n' +
+              '        transform: rotate(90deg);\n' +
+              '        right: 8px;\n' +
+              '        top: 2px;\n' +
+              '        padding: 0 0 2px;\n' +
+              '        border-bottom: 1px solid #ddd;\n' +
+              '        position: absolute;\n' +
+              '        pointer-events: none;\n' +
+              '      }\n' +
+              '      label:before {\n' +
+              '        content: "";\n' +
+              '        right: 6px;\n' +
+              '        top: 0px;\n' +
+              '        width: 20px;\n' +
+              '        height: 20px;\n' +
+              '        background: #f8f8f8;\n' +
+              '        position: absolute;\n' +
+              '        pointer-events: none;\n' +
+              '        display: block;\n' +
+              '      }\n' +
+              '      .inputContainer {\n' +
+              '        padding-bottom: 40px;\n' +
+              '      }\n' +
+              '      input[type="number"] {\n' +
+              '        font: 20px "Muli", sans-serif;\n' +
+              '        color: #333;\n' +
+              '        width: 200px;\n' +
+              '        height: 50px;\n' +
+              '        box-sizing: border-box;\n' +
+              '        letter-spacing: 1px;\n' +
+              '      }\n' +
+              '\n' +
+              '      .button {\n' +
+              '        background-color: #00cb7d;\n' +
+              '        display: inline-block;\n' +
+              '        cursor: pointer;\n' +
+              '        color: #ffffff;\n' +
+              '        font-family: "Lucida Console", Monaco, monospace;\n' +
+              '        font-size: 20px;\n' +
+              '        font-weight: bold;\n' +
+              '        padding: 14px 25px;\n' +
+              '        text-decoration: none;\n' +
+              '        -moz-user-select: none;\n' +
+              '        -khtml-user-select: none;\n' +
+              '        user-select: none;\n' +
+              '      }\n' +
+              '      .button:hover {\n' +
+              '        background-color: #008b56;\n' +
+              '      }\n' +
+              '      .button:active {\n' +
+              '        position: relative;\n' +
+              '        top: 1px;\n' +
+              '      }\n' +
+              '      #greenContent {\n' +
+              '        position: relative;\n' +
+              '        padding-bottom: 100px;\n' +
+              '      }\n' +
+              '      table {\n' +
+              '        font-family: "Lucida Console", Monaco, monospace;\n' +
+              '        height: 100%;\n' +
+              '        text-align: center;\n' +
+              '        border-collapse: collapse;\n' +
+              '      }\n' +
+              '      table.greenContent {\n' +
+              '        background-color: #00cb7d;\n' +
+              '      }\n' +
+              '      table.redContent {\n' +
+              '        background-color: #f4565b;\n' +
+              '      }\n' +
+              '      table td,\n' +
+              '      table th {\n' +
+              '        border: 3px solid #010101;\n' +
+              '        padding: 10px 10px;\n' +
+              '      }\n' +
+              '\n' +
+              '      table tbody td {\n' +
+              '        width: 80px;\n' +
+              '        font-size: 18px;\n' +
+              '        color: #010101;\n' +
+              '      }\n' +
+              '      table.greenContent td:nth-child(even) {\n' +
+              '        background: #00e98f;\n' +
+              '      }\n' +
+              '      table.redContent td:nth-child(even) {\n' +
+              '        background: #ff8377;\n' +
+              '      }\n' +
+              '      table th {\n' +
+              '        font-size: 20px;\n' +
+              '        font-weight: bold;\n' +
+              '        color: #010101;\n' +
+              '        text-align: center;\n' +
+              '      }\n' +
+              '      table.greenContent th {\n' +
+              '        background: #00cb7d;\n' +
+              '      }\n' +
+              '      table.redContent th {\n' +
+              '        background: #f4565b;\n' +
+              '      }</style></head><body onload="window.print()">'+inputDiv.innerHTML+greenDiv.innerHTML+redDiv.innerHTML+'</body></html>');
+
+          newWin.document.close();
+
+          setTimeout(function(){newWin.close();},10);
+
+      }
       redrawTables();
     </script>
   </body>
