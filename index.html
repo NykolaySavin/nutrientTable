@@ -6,163 +6,19 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css" id="css">
-      h1 {
-        display: inline-block;
-        color: #000000;
-        font-family: "Raleway", sans-serif;
-        font-size: 22px;
-        font-weight: 800;
-        text-align: left;
-        padding-right: 5px;
-        padding-left: 30px;
-        text-transform: uppercase;
-      }
-      select {
-        display: inline-block;
-        padding: 16px;
-        width: 150px;
-        margin: 0;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
-        -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-        -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-        box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-        background: #f8f8f8;
-        color: #000000;
-        border: none;
-        outline: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        cursor: pointer;
-      }
-      /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
-      @media screen and (-webkit-min-device-pixel-ratio: 0) {
-        select {
-          padding-right: 18px;
-        }
-      }
-
-      label {
-        position: relative;
-      }
-      label:after {
-        content: "<>";
-        font: 11px "Consolas", monospace;
-        color: #000000;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-        right: 8px;
-        top: 2px;
-        padding: 0 0 2px;
-        border-bottom: 1px solid #ddd;
-        position: absolute;
-        pointer-events: none;
-      }
-      label:before {
-        content: "";
-        right: 6px;
-        top: 0px;
-        width: 20px;
-        height: 20px;
-        background: #f8f8f8;
-        position: absolute;
-        pointer-events: none;
-        display: block;
-      }
-      .inputContainer {
-        padding-bottom: 40px;
-      }
-      input[type="number"] {
-        font: 20px "Muli", sans-serif;
-        color: #333;
-        width: 200px;
-        height: 50px;
-        box-sizing: border-box;
-        letter-spacing: 1px;
-      }
-
-      .button {
-        background-color: #00cb7d;
-        display: inline-block;
-        cursor: pointer;
-        color: #ffffff;
-        font-family: "Lucida Console", Monaco, monospace;
-        font-size: 20px;
-        font-weight: bold;
-        padding: 14px 25px;
-        text-decoration: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        user-select: none;
-      }
-      .button:hover {
-        background-color: #008b56;
-      }
-      .button:active {
-        position: relative;
-        top: 1px;
-      }
-      #greenContent {
-        position: relative;
-        padding-bottom: 100px;
-      }
-      table {
-        font-family: "Lucida Console", Monaco, monospace;
-        height: 100%;
-        text-align: center;
-        border-collapse: collapse;
-      }
-      table.greenContent {
-        background-color: #00cb7d;
-      }
-      table.redContent {
-        background-color: #f4565b;
-      }
-      table td,
-      table th {
-        border: 3px solid #010101;
-        padding: 10px 10px;
-      }
-
-      table tbody td {
-        width: 80px;
-        font-size: 18px;
-        color: #010101;
-      }
-      table.greenContent td:nth-child(even) {
-        background: #00e98f;
-      }
-      table.redContent td:nth-child(even) {
-        background: #ff8377;
-      }
-      table th {
-        font-size: 20px;
-        font-weight: bold;
-        color: #010101;
-        text-align: center;
-      }
-      table.greenContent th {
-        background: #00cb7d;
-      }
-      table.redContent th {
-        background: #f4565b;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
     <div class="inputContainer" id="inputContainer">
-      <h1>Select substance:</h1>
+      <h1 >Select substance:</h1>
       <label>
         <select id="substance">
           <option selected="selected">Soil/Coco</option>
           <option>Hydro</option>
         </select>
       </label>
+      <h1>Reservoir size:</h1>
+      <input name="amount" type="number" />
       <h1>Measurement:</h1>
       <label>
         <select id="footage">
@@ -170,8 +26,7 @@
           <option>Litres</option>
         </select>
       </label>
-      <h1>Reservoir size:</h1>
-      <input name="amount" type="number" />
+
     </div>
     <div class="inputContainer">
       <a class="button" id="addGreenColumn">Add Veg Week</a>
@@ -252,14 +107,14 @@
           '<table cellpadding="0" cellspacing="0" border="0"></table>'
         ).addClass(containerName);
         thHeader = $("<tr></tr>");
-        thHeader.append($("<th>STAGE</th>"));
+        thHeader.append($("<th></th>"));
         var rowHeader = $("<th></th>")
           .attr("colspan", columnLength)
           .text(header);
         thHeader.append(rowHeader);
         table.append(thHeader);
         weekRow = $("<tr></tr>");
-        weekRow.append($("<td>Week</td>"));
+        weekRow.append($("<td></td>"));
         for (var j = 0; j < columnLength; j++) {
           var rowData = $("<td></td>").text("Week " + (j + 1));
           weekRow.append(rowData);
@@ -284,7 +139,7 @@
           row.append($("<td></td>").text(data));
           for (var j = 0; j < columnLength; j++) {
             var rowData = $("<td></td>").text(
-              Math.round(tableData[i][j] * multiplyValue * 10) / 10
+              Math.floor(tableData[i][j] * multiplyValue * 10) / 10
             );
             row.append(rowData);
           }
@@ -300,7 +155,7 @@
           substance == "Soil/Coco" ? cocoGreen : hydroGreen;
         const tableDataRed = substance == "Soil/Coco" ? cocoRed : hydroRed;
         const multiplier =
-          footage == "Gallons" ? currentValue : currentValue * 3.785;
+          footage == "Gallons" ? currentValue : currentValue / 3.785;
         createTable(
           greenColumns,
           multiplier,
@@ -371,151 +226,7 @@
 
           newWin.document.open();
 
-          newWin.document.write('<html><head><style type="text/css"> h1 {\n' +
-              '        display: inline-block;\n' +
-              '        color: #000000;\n' +
-              '        font-family: "Raleway", sans-serif;\n' +
-              '        font-size: 22px;\n' +
-              '        font-weight: 800;\n' +
-              '        text-align: left;\n' +
-              '        padding-right: 5px;\n' +
-              '        padding-left: 30px;\n' +
-              '        text-transform: uppercase;\n' +
-              '      }\n' +
-              '      select {\n' +
-              '        display: inline-block;\n' +
-              '        padding: 16px;\n' +
-              '        width: 150px;\n' +
-              '        margin: 0;\n' +
-              '        -webkit-border-radius: 4px;\n' +
-              '        -moz-border-radius: 4px;\n' +
-              '        border-radius: 4px;\n' +
-              '        -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
-              '        -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
-              '        box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;\n' +
-              '        background: #f8f8f8;\n' +
-              '        color: #000000;\n' +
-              '        border: none;\n' +
-              '        outline: none;\n' +
-              '        -webkit-appearance: none;\n' +
-              '        -moz-appearance: none;\n' +
-              '        appearance: none;\n' +
-              '        cursor: pointer;\n' +
-              '      }\n' +
-              '      /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */\n' +
-              '      @media screen and (-webkit-min-device-pixel-ratio: 0) {\n' +
-              '        select {\n' +
-              '          padding-right: 18px;\n' +
-              '        }\n' +
-              '      }\n' +
-              '\n' +
-              '      label {\n' +
-              '        position: relative;\n' +
-              '      }\n' +
-              '      label:after {\n' +
-              '        content: "<>";\n' +
-              '        font: 11px "Consolas", monospace;\n' +
-              '        color: #000000;\n' +
-              '        -webkit-transform: rotate(90deg);\n' +
-              '        -moz-transform: rotate(90deg);\n' +
-              '        -ms-transform: rotate(90deg);\n' +
-              '        transform: rotate(90deg);\n' +
-              '        right: 8px;\n' +
-              '        top: 2px;\n' +
-              '        padding: 0 0 2px;\n' +
-              '        border-bottom: 1px solid #ddd;\n' +
-              '        position: absolute;\n' +
-              '        pointer-events: none;\n' +
-              '      }\n' +
-              '      label:before {\n' +
-              '        content: "";\n' +
-              '        right: 6px;\n' +
-              '        top: 0px;\n' +
-              '        width: 20px;\n' +
-              '        height: 20px;\n' +
-              '        background: #f8f8f8;\n' +
-              '        position: absolute;\n' +
-              '        pointer-events: none;\n' +
-              '        display: block;\n' +
-              '      }\n' +
-              '      .inputContainer {\n' +
-              '        padding-bottom: 40px;\n' +
-              '      }\n' +
-              '      input[type="number"] {\n' +
-              '        font: 20px "Muli", sans-serif;\n' +
-              '        color: #333;\n' +
-              '        width: 200px;\n' +
-              '        height: 50px;\n' +
-              '        box-sizing: border-box;\n' +
-              '        letter-spacing: 1px;\n' +
-              '      }\n' +
-              '\n' +
-              '      .button {\n' +
-              '        background-color: #00cb7d;\n' +
-              '        display: inline-block;\n' +
-              '        cursor: pointer;\n' +
-              '        color: #ffffff;\n' +
-              '        font-family: "Lucida Console", Monaco, monospace;\n' +
-              '        font-size: 20px;\n' +
-              '        font-weight: bold;\n' +
-              '        padding: 14px 25px;\n' +
-              '        text-decoration: none;\n' +
-              '        -moz-user-select: none;\n' +
-              '        -khtml-user-select: none;\n' +
-              '        user-select: none;\n' +
-              '      }\n' +
-              '      .button:hover {\n' +
-              '        background-color: #008b56;\n' +
-              '      }\n' +
-              '      .button:active {\n' +
-              '        position: relative;\n' +
-              '        top: 1px;\n' +
-              '      }\n' +
-              '      #greenContent {\n' +
-              '        position: relative;\n' +
-              '        padding-bottom: 100px;\n' +
-              '      }\n' +
-              '      table {\n' +
-              '        font-family: "Lucida Console", Monaco, monospace;\n' +
-              '        height: 100%;\n' +
-              '        text-align: center;\n' +
-              '        border-collapse: collapse;\n' +
-              '      }\n' +
-              '      table.greenContent {\n' +
-              '        background-color: #00cb7d;\n' +
-              '      }\n' +
-              '      table.redContent {\n' +
-              '        background-color: #f4565b;\n' +
-              '      }\n' +
-              '      table td,\n' +
-              '      table th {\n' +
-              '        border: 3px solid #010101;\n' +
-              '        padding: 10px 10px;\n' +
-              '      }\n' +
-              '\n' +
-              '      table tbody td {\n' +
-              '        width: 80px;\n' +
-              '        font-size: 18px;\n' +
-              '        color: #010101;\n' +
-              '      }\n' +
-              '      table.greenContent td:nth-child(even) {\n' +
-              '        background: #00e98f;\n' +
-              '      }\n' +
-              '      table.redContent td:nth-child(even) {\n' +
-              '        background: #ff8377;\n' +
-              '      }\n' +
-              '      table th {\n' +
-              '        font-size: 20px;\n' +
-              '        font-weight: bold;\n' +
-              '        color: #010101;\n' +
-              '        text-align: center;\n' +
-              '      }\n' +
-              '      table.greenContent th {\n' +
-              '        background: #00cb7d;\n' +
-              '      }\n' +
-              '      table.redContent th {\n' +
-              '        background: #f4565b;\n' +
-              '      }</style></head><body onload="window.print()">'+inputDiv.innerHTML+greenDiv.innerHTML+redDiv.innerHTML+'</body></html>');
+          newWin.document.write('<html><head><link rel="stylesheet" href="styles.css" type="text/css" media="print" /></head><body onload="window.print()">'+inputDiv.innerHTML+greenDiv.innerHTML+redDiv.innerHTML+'</body></html>');
 
           newWin.document.close();
 
