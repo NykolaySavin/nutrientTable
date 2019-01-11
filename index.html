@@ -10,10 +10,11 @@
   </head>
   <body>
     <div class="inputContainer" id="inputContainer">
-      <h1 >Select substance:</h1>
+      <h1 >Select program:</h1>
       <label>
         <select id="substance">
-          <option selected="selected">Soil/Coco</option>
+          <option selected="selected">Soil</option>
+          <option>Coco</option>
           <option>Hydro</option>
         </select>
       </label>
@@ -41,7 +42,7 @@
       let greenColumns = 6;
       let redColumns = 8;
       let value = 0;
-      let substance = "Soil/Coco";
+      let substance = "Soil";
       let footage = "Gallons";
       const hydroGreen = [
         [6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
@@ -66,11 +67,22 @@
         [7, 7, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14],
         [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
       ];
+      const soilGreen = [
+          [6, 8, 8, 8, 9, 10, 10, 10, 10, 10],
+          [10, 12, 15, 17, 17, 19, 19, 19, 19, 19],
+          [4, 5, 5, 5, 6, 6, 6, 6, 6, 6],
+          ["","","","","","","","","",""],
+          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+          [7, 9, 9, 9, 9, 11, 11, 11, 11, 11, 11],
+          [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+          [2, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+          [7, 7, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14],
+          [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+      ];
       const cocoRed = [
         [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
         [5, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
         [9, 11, 11, 15, 17, 19, 21, 21, 21, 21, 21, 21, 21, 21, 21],
-        [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
         [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
@@ -81,6 +93,21 @@
         ["", 6, 8, "", "", "", "", "", "", "", "", "", "", ""],
         ["", "", "", 8, 8, "", "", "", "", "", "", "", "", ""],
         ["", "", "", "", "", 8, 8, 8, 8, 8, 8, 8, 8, 8]
+      ];
+      const soilRed = [
+          [6, 7, 7, 8, 8, 7, 6, 6, 6, 6, 6, 6, 6, 6],
+          [5, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
+          [9, 11, 11, 15, 17, 19, 21, 21, 21, 21, 21, 21, 21, 21, 21],
+          [2.5, 2.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+          [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
+          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+          [14, 10, 7, 7, "", "", "", "", "", "", "", "", "", ""],
+          [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+          ["", 6, 8, "", "", "", "", "", "", "", "", "", "", ""],
+          ["", "", "", 8, 8, "", "", "", "", "", "", "", "", ""],
+          ["", "", "", "", "", 8, 8, 8, 8, 8, 8, 8, 8, 8]
       ];
       const hydroRed = [
         [6, 7, 7, 8, 8, 8, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -152,8 +179,8 @@
         $("table").remove();
         const currentValue = value ? value : 1;
         const tableDataGreen =
-          substance == "Soil/Coco" ? cocoGreen : hydroGreen;
-        const tableDataRed = substance == "Soil/Coco" ? cocoRed : hydroRed;
+          substance == "Soil" ? soilGreen :substance=="Coco"?cocoGreen:hydroGreen;
+        const tableDataRed = substance == "Soil" ? soilRed :substance=="Coco"? cocoRed:hydroRed;
         const multiplier =
           footage == "Gallons" ? currentValue : currentValue / 3.785;
         createTable(
