@@ -153,7 +153,8 @@
           if (i == 0) data = "MICRO";
           if (i == 1) data = "GROW";
           if (i == 2) data = "BLOOM";
-          if (i == 3) data = "CALNESIUM";
+          if (i == 3 &&(substance!="Soil" ||containerName=="redContent")) data = "CALNESIUM";
+          if(i==3 && substance=="Soil" && containerName=="greenContent") i++;
           if (i == 4) data = "SUPER B+";
           if (i == 5) data = "ROYAL GOLD";
           if (i == 6) data = "PLANTACILLIN";
