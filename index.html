@@ -5,7 +5,7 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
@@ -43,6 +43,9 @@
       let value = 0;
       let substance = "Soil";
       let footage = "Gallons";
+      const tFooterGreen =["300-500","500-750","750-950","950-1050","1050-1200","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400"];
+
+      const tFooterRed =["850-950","1000-1200","1200-1350","1350-1500","1600-1700","1500-1650","1400-1500","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400"];
       const hydroGreen = [
         [6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [10, 12, 14, 14, 14, 14, 14, 14, 14, 14],
@@ -118,7 +121,7 @@
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [11, 10, 5, 5, "", "", "", "", "", "", "", "", "", ""],
-          ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["", 6, 8, "", "", "", "", "", "", "", "", "", "", ""],
         ["", "", "", 8, 8, "", "", "", "", "", "", "", "", ""],
         ["", "", "", "", "", 8, 8, 8, "", "", "", "", "", ""]
@@ -128,7 +131,8 @@
         multiplyValue,
         tableData,
         containerName,
-        header
+        header,
+        tFooterData
       ) {
         var table = $(
           '<table cellpadding="0" cellspacing="0" border="0"></table>'
@@ -153,15 +157,18 @@
           if (i == 0) data = "MICRO";
           if (i == 1) data = "GROW";
           if (i == 2) data = "BLOOM";
-          if (i == 3 &&(substance!="Soil" ||containerName=="redContent")) data = "CALNESIUM";
-          if(i==3 && substance=="Soil" && containerName=="greenContent") i++;
+          if (i == 3 && (substance != "Soil" || containerName == "redContent"))
+            data = "CALNESIUM";
+          if (i == 3 && substance == "Soil" && containerName == "greenContent")
+            i++;
           if (i == 4) data = "SUPER B+";
           if (i == 5) data = "ROYAL GOLD";
           if (i == 6) data = "PLANTACILLIN";
           if (i == 7) data = "CARBO BLAST";
           if (i == 8) data = "PROP-O-GATOR";
-          if (i == 9 &&( substance=="Soil" || substance=="Coco")) data = "ROYAL BLACK";
-          if(i==9 &&  substance=="Hydro") i++;
+          if (i == 9 && (substance == "Soil" || substance == "Coco"))
+            data = "ROYAL BLACK";
+          if (i == 9 && substance == "Hydro") i++;
           if (i == 10) data = "BUD START";
           if (i == 11) data = "TON O BUD";
           if (i == 12) data = "BUD BOOM";
@@ -174,7 +181,14 @@
           }
           table.append(row);
         }
+        var tFooter =$("<tr></tr>").addClass("clear");
+        tFooter.append($("<td>Suggested PPM Range</td>"));
+        for(var j=0; j<columnLength;j++){
+            var rowData = $("<td></td>").text(tFooterData[j]);
+            tFooter.append(rowData);
+        }
 
+        table.append(tFooter);
         $("#" + containerName).append(table);
       }
       function redrawTables() {
@@ -194,19 +208,22 @@
             : hydroRed;
         const multiplier =
           footage == "Gallons" ? currentValue : currentValue / 3.785;
+
         createTable(
           greenColumns,
           multiplier,
           tableDataGreen,
           "greenContent",
-          "VEGETATIVE STAGE"
+          "VEGETATIVE STAGE",
+            tFooterGreen
         );
         createTable(
           redColumns,
           multiplier,
           tableDataRed,
           "redContent",
-          "FLOWERING & RIPENING STAGE"
+          "FLOWERING & RIPENING STAGE",
+            tFooterRed
         );
       }
       $(function() {

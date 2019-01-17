@@ -159,3 +159,11 @@ table.redContent th {
     color: #010101;
   }
 }
+tr.clear td{
+  background: #ffffff;
+  font-size: 12px;
+}
+tr.clear td:nth-child(even) {
+   background: #ffffff;
+  font-size: 12px;
+ }
