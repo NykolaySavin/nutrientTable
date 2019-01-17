@@ -1,84 +1,17 @@
-#allData h1 {
+#allData h1{
   display: inline-block;
-  color: #000000;
-  font-family: "Raleway", sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  text-align: left;
-  padding-right: 5px;
-  text-transform: uppercase;
-  padding-left: 30px;
+  padding-left: 20px;
 }
-#allData select {
+#allData label{
   display: inline-block;
-  padding: 16px;
-
-  width: 150px;
-  margin: 0;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-  -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-  box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-  background: #f8f8f8;
-  color: #000000;
-  border: none;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
 }
-/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  #allData select {
-    padding-right: 18px;
-  }
-}
-
-#allData label {
-  position: relative;
-}
-#allData label:after {
-  content: "<>";
-  font: 11px "Consolas", monospace;
-  color: #000000;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  right: 8px;
-  top: 2px;
-  padding: 0 0 2px;
-  border-bottom: 1px solid #ddd;
-  position: absolute;
-  pointer-events: none;
-}
-#allData label:before {
-  content: "";
-  right: 6px;
-  top: 0px;
-  width: 20px;
-  height: 20px;
-  background: #f8f8f8;
-  position: absolute;
-  pointer-events: none;
-  display: block;
-}
-#allData .inputContainer {
+#allData .inputContainerMy {
   padding-bottom: 40px;
 }
-#allData input[type="number"] {
-  font: 20px "Muli", sans-serif;
-  color: #333;
-  width: 200px;
-  height: 50px;
-  box-sizing: border-box;
-  letter-spacing: 1px;
+#allData input[type="number"]{
+  width: 100px;
 }
-
-#allData .buttonMy {
+#allData button {
   background-color: #00cb7d;
   display: inline-block;
   cursor: pointer;
@@ -87,15 +20,11 @@
   font-size: 20px;
   font-weight: bold;
   padding: 14px 25px;
-  text-decoration: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
 }
-#allData .buttonMy:hover {
+#allData button:hover {
   background-color: #008b56;
 }
-#allData .buttonMy:active {
+#allData button:active {
   position: relative;
   top: 1px;
 }
