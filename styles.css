@@ -1,4 +1,4 @@
-h1 {
+#allData h1 {
   display: inline-block;
   color: #000000;
   font-family: "Raleway", sans-serif;
@@ -9,7 +9,7 @@ h1 {
   text-transform: uppercase;
   padding-left: 30px;
 }
-select {
+#allData select {
   display: inline-block;
   padding: 16px;
 
@@ -37,10 +37,10 @@ select {
   }
 }
 
-label {
+#allData label {
   position: relative;
 }
-label:after {
+#allData label:after {
   content: "<>";
   font: 11px "Consolas", monospace;
   color: #000000;
@@ -55,7 +55,7 @@ label:after {
   position: absolute;
   pointer-events: none;
 }
-label:before {
+#allData label:before {
   content: "";
   right: 6px;
   top: 0px;
@@ -66,10 +66,10 @@ label:before {
   pointer-events: none;
   display: block;
 }
-.inputContainer {
+#allData .inputContainer {
   padding-bottom: 40px;
 }
-input[type="number"] {
+#allData input[type="number"] {
   font: 20px "Muli", sans-serif;
   color: #333;
   width: 200px;
@@ -78,7 +78,7 @@ input[type="number"] {
   letter-spacing: 1px;
 }
 
-.button {
+#allData .buttonMy {
   background-color: #00cb7d;
   display: inline-block;
   cursor: pointer;
@@ -92,10 +92,10 @@ input[type="number"] {
   -khtml-user-select: none;
   user-select: none;
 }
-.button:hover {
+#allData .buttonMy:hover {
   background-color: #008b56;
 }
-.button:active {
+#allData .buttonMy:active {
   position: relative;
   top: 1px;
 }
@@ -103,25 +103,25 @@ input[type="number"] {
   position: relative;
   padding-bottom: 100px;
 }
-table {
+#allData table {
   font-family: "Lucida Console", Monaco, monospace;
   height: 100%;
   text-align: center;
   border-collapse: collapse;
 }
-table.greenContent {
+#allData table.greenContent {
   background-color: #00cb7d;
 }
-table.redContent {
+#allData table.redContent {
   background-color: #f4565b;
 }
-table td,
-table th {
+#allData table td,
+#allData table th {
   border: 3px solid #010101;
   padding: 10px 10px;
 }
 
-table tbody td {
+#allData table tbody td {
   width: 80px;
   font-size: 18px;
   color: #010101;
@@ -132,7 +132,7 @@ table.greenContent td:nth-child(even) {
 table.redContent td:nth-child(even) {
   background: #ff8377;
 }
-table th {
+#allData table th {
   font-size: 20px;
   font-weight: bold;
   color: #010101;
@@ -145,25 +145,27 @@ table.redContent th {
   background: #f4565b;
 }
 @media print {
-  table {
+  #allData  table {
     page-break-inside: avoid;
     margin-top: 20px;
   }
-  h1 {
+  #allData h1 {
     display: block;
     margin-left: -25px;
   }
-  table tbody td {
+  #allData table tbody td {
     width: auto;
     font-size: 16px;
     color: #010101;
   }
 }
-tr.clear td{
+#allData tr.clear td{
   background: #ffffff;
-  font-size: 12px;
+
 }
-tr.clear td:nth-child(even) {
+#allData .clear{
+  font-size: 14px;
+}
+#allData tr.clear td:nth-child(even) {
    background: #ffffff;
-  font-size: 12px;
  }

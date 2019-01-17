@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
+
+  <div  id="allData">
     <div class="inputContainer" id="inputContainer">
       <h1>Select program:</h1>
       <label>
@@ -29,11 +31,11 @@
       </label>
     </div>
     <div class="inputContainer">
-      <a class="button" id="addGreenColumn">Add Veg Week</a>
-      <a class="button" id="removeGreenColumn">Remove Veg Week</a>
-      <a class="button" id="addRedColumn">Add Flower Week</a>
-      <a class="button" id="removeRedColumn">Remove Flower Week</a>
-      <a class="button" id="printTable">Print</a>
+      <a class="buttonMy" id="addGreenColumn">Add Veg Week</a>
+      <a class="buttonMy" id="removeGreenColumn">Remove Veg Week</a>
+      <a class="buttonMy" id="addRedColumn">Add Flower Week</a>
+      <a class="buttonMy" id="removeRedColumn">Remove Flower Week</a>
+      <a class="buttonMy" id="printTable">Print</a>
     </div>
     <div id="greenContent"></div>
     <div id="redContent"></div>
@@ -43,9 +45,13 @@
       let value = 0;
       let substance = "Soil";
       let footage = "Gallons";
-      const tFooterGreen =["300-500","500-750","750-950","950-1050","1050-1200","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400"];
 
-      const tFooterRed =["850-950","1000-1200","1200-1350","1350-1500","1600-1700","1500-1650","1400-1500","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400"];
+      const hydroGreenFooter =           ["300-500","500-750","750-950","950-1050","1050-1200","1050-1200","1050-1200","1050-1200","1050-1200","1050-1200","1050-1200"];
+      const cocoGreenFooter =           ["300-500","500-750","750-950","950-1050","1050-1200","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400"];
+      const soilGreenFooter =           ["300-500","500-750","750-950","950-1050","1050-1200","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400","1200-1400"];
+      const cocoRedFooter =           ["850-950","1000-1200","1200-1350","1350-1500","1600-1700","1500-1650","1400-1500","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400"];
+      const soilRedFooter =           ["850-950","1000-1200","1200-1350","1350-1500","1600-1700","1500-1650","1400-1500","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400"];
+      const hydroRedFooter =           ["850-950","1000-1200","1200-1350","1350-1500","1350-1500","1350-1500","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400","1250-1400"];
       const hydroGreen = [
         [6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [10, 12, 14, 14, 14, 14, 14, 14, 14, 14],
@@ -132,7 +138,7 @@
         tableData,
         containerName,
         header,
-        tFooterData
+        footerData
       ) {
         var table = $(
           '<table cellpadding="0" cellspacing="0" border="0"></table>'
@@ -174,21 +180,22 @@
           if (i == 12) data = "BUD BOOM";
           row.append($("<td></td>").text(data));
           for (var j = 0; j < columnLength; j++) {
+
             var rowData = $("<td></td>").text(
-              Math.floor(tableData[i][j] * multiplyValue * 10) / 10
+                ( Math.floor(tableData[i][j] * multiplyValue * 10) / 10).toString()+" ml"
             );
+
             row.append(rowData);
           }
-          table.append(row);
+        table.append(row);
         }
-        var tFooter =$("<tr></tr>").addClass("clear");
-        tFooter.append($("<td>Suggested PPM Range</td>"));
-        for(var j=0; j<columnLength;j++){
-            var rowData = $("<td></td>").text(tFooterData[j]);
-            tFooter.append(rowData);
-        }
-
-        table.append(tFooter);
+          var footer = $("<tr></tr>").addClass("clear");
+          footer.append($("<td></td>").addClass("clear").text("Suggested PPM Range"));
+          for (var i =0;i<columnLength;i++){
+              var f = $("<td></td>").addClass("clear").text(footerData[i]);
+              footer.append(f);
+          }
+          table.append(footer);
         $("#" + containerName).append(table);
       }
       function redrawTables() {
@@ -208,14 +215,23 @@
             : hydroRed;
         const multiplier =
           footage == "Gallons" ? currentValue : currentValue / 3.785;
-
+        const footerGreen =  substance == "Soil"
+            ? soilGreenFooter
+            : substance == "Coco"
+                ? cocoGreenFooter
+                : hydroGreenFooter;
+        const footerRed =  substance == "Soil"
+            ? soilRedFooter
+            : substance == "Coco"
+                ? cocoRedFooter
+                : hydroRedFooter;
         createTable(
           greenColumns,
           multiplier,
           tableDataGreen,
           "greenContent",
           "VEGETATIVE STAGE",
-            tFooterGreen
+            footerGreen
         );
         createTable(
           redColumns,
@@ -223,7 +239,7 @@
           tableDataRed,
           "redContent",
           "FLOWERING & RIPENING STAGE",
-            tFooterRed
+            footerRed
         );
       }
       $(function() {
@@ -280,11 +296,7 @@
         newWin.document.open();
 
         newWin.document.write(
-          '<html><head><link rel="stylesheet" href="styles.css" type="text/css" media="print" /></head><body onload="window.print()">' +
-            inputDiv.innerHTML +
-            greenDiv.innerHTML +
-            redDiv.innerHTML +
-            "</body></html>"
+          '<html><head><link rel="stylesheet" href="styles.css" type="text/css" media="print" /></head><body onload="window.print()"><div id="allData">' + inputDiv.innerHTML+greenDiv.innerHTML+redDiv.innerHTML +'</div></body></html>'
         );
 
         newWin.document.close();
@@ -295,5 +307,6 @@
       }
       redrawTables();
     </script>
+  </div>
   </body>
 </html>
