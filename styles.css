@@ -32,7 +32,7 @@
 }
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  select {
+  #allData select {
     padding-right: 18px;
   }
 }
@@ -126,10 +126,10 @@
   font-size: 18px;
   color: #010101;
 }
-table.greenContent td:nth-child(even) {
+#allData table.greenContent td:nth-child(even) {
   background: #00e98f;
 }
-table.redContent td:nth-child(even) {
+#allData table.redContent td:nth-child(even) {
   background: #ff8377;
 }
 #allData table th {
@@ -138,10 +138,10 @@ table.redContent td:nth-child(even) {
   color: #010101;
   text-align: center;
 }
-table.greenContent th {
+#allData table.greenContent th {
   background: #00cb7d;
 }
-table.redContent th {
+#allData table.redContent th {
   background: #f4565b;
 }
 @media print {
